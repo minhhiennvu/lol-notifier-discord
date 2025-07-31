@@ -2,25 +2,24 @@ name: Check LoL In-Game Status
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Mỗi 2 phút
+    - cron: "*/2 * * * *"  # chạy mỗi 2 phút
   workflow_dispatch:
 
 jobs:
-  run-bot:
+  check-status:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: Run bot
+      - name: Run main script
         run: |
           python main.py
